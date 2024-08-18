@@ -192,7 +192,7 @@ class _BubbelBarExampleState extends State<BubbelBarExample> {
         items: [
           BottomBarItem(
             icon: const Icon(Icons.abc),
-            title: const Text('Abc'),
+            title: const Text('Notifications'),
             backgroundColor: Colors.red,
 
             // selectedColor: Colors.pink,
@@ -203,7 +203,7 @@ class _BubbelBarExampleState extends State<BubbelBarExample> {
           ),
           BottomBarItem(
             icon: const Icon(Icons.safety_divider),
-            title: const Text('Safety Divider'),
+            title: FittedBox(child: const Text('Safety Divider')),
             selectedColor: Colors.orange,
             backgroundColor: Colors.orange,
           ),

@@ -107,9 +107,15 @@ class BubbleNavigationTile extends StatelessWidget {
                           mainAxisAlignment: selected
                               ? MainAxisAlignment.spaceEvenly
                               : MainAxisAlignment.center,
-                          children: items(label).map((child) {
-                            return selected ? child : child;
-                          }).toList(),
+                          // children: items(label).map((child) {
+                          //   return selected ? child : child;
+                          // }).toList(),
+                          children: [
+                            selected ? icon() : icon(),
+                            selected
+                                ? Expanded(child: title(label))
+                                : title(label),
+                          ],
                         )
                       : Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,7 +124,12 @@ class BubbleNavigationTile extends StatelessWidget {
                           mainAxisAlignment: selected
                               ? MainAxisAlignment.spaceEvenly
                               : MainAxisAlignment.center,
-                          children: items(label),
+                          children: [
+                            selected ? icon() : icon(),
+                            selected
+                                ? Expanded(child: title(label))
+                                : title(label),
+                          ], //items(label),
                         ),
                 ),
               ),
@@ -132,16 +143,15 @@ class BubbleNavigationTile extends StatelessWidget {
     );
   }
 
-  List<Widget> items(label) {
-    return [
-      IconWidget(
+  Widget icon() => IconWidget(
         animation: animation,
         iconSize: iconSize,
         selected: selected,
         unselectedIconColor: unselectedIconColor,
         item: item,
-      ),
-      AnimatedCrossFade(
+      );
+
+  Widget title(label) => AnimatedCrossFade(
         alignment: const Alignment(0, 0),
         firstChild: label,
         secondChild: Container(),
@@ -151,7 +161,28 @@ class BubbleNavigationTile extends StatelessWidget {
         secondCurve: Curves.fastOutSlowIn.flipped,
         crossFadeState:
             selected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-      ),
-    ];
-  }
+      );
+
+  // List<Widget> items(label) {
+  //   return [
+  //     IconWidget(
+  //       animation: animation,
+  //       iconSize: iconSize,
+  //       selected: selected,
+  //       unselectedIconColor: unselectedIconColor,
+  //       item: item,
+  //     ),
+  //     AnimatedCrossFade(
+  //       alignment: const Alignment(0, 0),
+  //       firstChild: label,
+  //       secondChild: Container(),
+  //       duration: const Duration(milliseconds: 250),
+  //       sizeCurve: Curves.fastOutSlowIn,
+  //       firstCurve: Curves.fastOutSlowIn,
+  //       secondCurve: Curves.fastOutSlowIn.flipped,
+  //       crossFadeState:
+  //           selected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+  //     ),
+  //   ];
+  // }
 }
