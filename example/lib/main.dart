@@ -182,13 +182,14 @@ class _BubbelBarExampleState extends State<BubbelBarExample> {
       ),
       bottomNavigationBar: StylishBottomBar(
         option: BubbleBarOptions(
-          // barStyle: BubbleBarStyle.vertical,
           barStyle: BubbleBarStyle.horizontal,
           bubbleFillStyle: BubbleFillStyle.fill,
-          // bubbleFillStyle: BubbleFillStyle.outlined,
-          opacity: 0.3,
+          opacity: 1,
+          borderRadius: BorderRadius.circular(5),
         ),
-        iconSpace: 12.0,
+
+        elevation: 12,
+        // iconSpace: 12.0,
         items: [
           BottomBarItem(
             icon: const Icon(Icons.abc),
@@ -218,7 +219,7 @@ class _BubbelBarExampleState extends State<BubbelBarExample> {
             backgroundColor: Colors.purple,
           ),
         ],
-        hasNotch: true,
+        // hasNotch: true,
         currentIndex: selected,
         onTap: (index) {
           setState(() {

@@ -99,24 +99,28 @@ class BubbleNavigationTile extends StatelessWidget {
                         ? item.backgroundColor?.withOpacity(opacity)
                         : Colors.transparent,
                   ),
+                  alignment: Alignment.center,
                   child: barStyle == BubbleBarStyle.horizontal
-                      ? Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                      // ? Row(
+                      //     crossAxisAlignment: CrossAxisAlignment.center,
 
-                          ///Add space around selected item
-                          mainAxisAlignment: selected
-                              ? MainAxisAlignment.spaceEvenly
-                              : MainAxisAlignment.center,
-                          // children: items(label).map((child) {
-                          //   return selected ? child : child;
-                          // }).toList(),
-                          children: [
-                            selected ? icon() : icon(),
-                            selected
-                                ? Expanded(child: title(label))
-                                : title(label),
-                          ],
-                        )
+                      //     ///Add space around selected item
+                      //     mainAxisAlignment: selected
+                      //         ? MainAxisAlignment.spaceEvenly
+                      //         : MainAxisAlignment.center,
+                      //     // children: items(label).map((child) {
+                      //     //   return selected ? child : child;
+                      //     // }).toList(),
+                      //     children: [
+                      //       selected ? icon() : icon(),
+                      //       selected
+                      //           ? Expanded(child: title(label))
+                      //           : title(label),
+                      //     ],
+                      //   )
+                      ? selected
+                          ? FittedBox(child: content())
+                          : content()
                       : Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
 
@@ -142,6 +146,16 @@ class BubbleNavigationTile extends StatelessWidget {
       ),
     );
   }
+
+  Widget content() => RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(children: [
+          const WidgetSpan(
+            child: Icon(Icons.notifications),
+          ),
+          if (selected) const TextSpan(text: 'Notifications'),
+        ]),
+      );
 
   Widget icon() => IconWidget(
         animation: animation,
